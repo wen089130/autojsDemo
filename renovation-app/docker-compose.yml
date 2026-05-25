@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    image: renovation-app
+    container_name: renovation-app
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data   # 客户线索持久化，容器重建也不丢
