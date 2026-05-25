@@ -48,3 +48,13 @@ export function buildPrompt({ style, roomType, customPrompt }) {
   }
   return prompt;
 }
+
+// 腾讯云图生图的提示词限制较短，用简洁中文提示
+export function buildPromptZh({ style, roomType, customPrompt }) {
+  const room = roomType || "房间";
+  const styleName = style || "现代简约";
+  let p = `把这个${room}装修成${styleName}风格，保留原有户型和空间结构、门窗位置不变，专业室内设计，真实照片级渲染，光线明亮，高级精致`;
+  const extra = (customPrompt || "").trim();
+  if (extra) p += `，${extra}`;
+  return p.slice(0, 180);
+}
