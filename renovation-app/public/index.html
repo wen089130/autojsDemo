@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>AI 装修效果图 · 上传照片一键生成</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" id="brandName">AI 装修效果图</div>
+    <div class="brand-sub">上传房间照片，10 秒生成装修方案</div>
+  </header>
+
+  <main class="container">
+    <!-- 步骤 1：上传 -->
+    <section class="card">
+      <div class="step-title"><span class="num">1</span> 上传你家房间照片</div>
+      <label class="uploader" id="uploader">
+        <input type="file" id="fileInput" accept="image/*" hidden />
+        <div class="uploader-inner" id="uploaderInner">
+          <div class="up-icon">＋</div>
+          <div class="up-text">点击拍照 / 选择照片</div>
+          <div class="up-hint">建议拍清晰的整体房间照</div>
+        </div>
+        <img id="preview" class="preview" alt="预览" />
+      </label>
+    </section>
+
+    <!-- 步骤 2：房间类型 -->
+    <section class="card">
+      <div class="step-title"><span class="num">2</span> 选择房间类型</div>
+      <div class="chips" id="roomChips"></div>
+    </section>
+
+    <!-- 步骤 3：风格 -->
+    <section class="card">
+      <div class="step-title"><span class="num">3</span> 选择装修风格</div>
+      <div class="chips" id="styleChips"></div>
+      <input type="text" id="customPrompt" class="text-input" placeholder="可选：补充要求，如「要榻榻米」「浅色木地板」" />
+    </section>
+
+    <button id="generateBtn" class="primary-btn">一键生成效果图</button>
+    <p class="tip" id="demoTip" hidden>当前为演示模式：未配置 API Key，将直接返回原图用于体验流程。</p>
+
+    <!-- 结果 -->
+    <section class="card result-card" id="resultCard" hidden>
+      <div class="step-title">✨ 你的专属效果图</div>
+      <div class="compare">
+        <div class="compare-item">
+          <span class="compare-label">改造前</span>
+          <img id="beforeImg" alt="改造前" />
+        </div>
+        <div class="compare-item">
+          <span class="compare-label after">改造后</span>
+          <img id="afterImg" alt="改造后" />
+        </div>
+      </div>
+      <div class="result-actions">
+        <a id="downloadBtn" class="ghost-btn" download="装修效果图.png">保存效果图</a>
+        <button id="againBtn" class="ghost-btn">换个风格</button>
+      </div>
+    </section>
+
+    <!-- 留资 -->
+    <section class="card lead-card" id="leadCard" hidden>
+      <div class="lead-title">想让这套方案落地？</div>
+      <div class="lead-sub">留下联系方式，资深设计师免费帮你出详细方案和报价</div>
+      <input type="text" id="leadName" class="text-input" placeholder="您的称呼（选填）" />
+      <input type="tel" id="leadPhone" class="text-input" placeholder="手机号 *" inputmode="numeric" />
+      <input type="text" id="leadCity" class="text-input" placeholder="所在城市（选填）" />
+      <button id="leadBtn" class="primary-btn">免费获取方案报价</button>
+      <p class="lead-done" id="leadDone" hidden>✅ 已收到！我们会尽快联系你</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div id="brandContact"></div>
+    <div class="footer-tip">本工具仅生成参考效果图，最终方案以实际设计为准</div>
+  </footer>
+
+  <!-- 加载遮罩 -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="spinner"></div>
+    <div class="overlay-text">AI 正在为你设计中…<br />约需 10-30 秒</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

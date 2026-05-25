@@ -1,0 +1,13 @@
+{
+  "name": "renovation-design-app",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "上传房间照片，AI 一键生成装修效果图（装修获客工具）",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
